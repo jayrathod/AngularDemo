@@ -1,0 +1,10 @@
+<h1>ToDo's</h1>
+<h3>{{apiStatus$ | async}}</h3>
+<ul>
+    <img *ngIf="loading$ | async" src="favicon.ico" />
+    @if((apiStatus$ | async) == "success") {
+        @for(todo of allTodos$ | async; track $index) {
+            <li>{{todo.todo}}</li>
+        }
+    }
+</ul>
