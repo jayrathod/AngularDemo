@@ -11,4 +11,12 @@ export class TodoService {
   getAllTodo() {
     return this.httpClient.get('https://dummyjson.com/todos');
   }
+
+  addTodo(body: any) {
+    return this.httpClient.post('https://dummyjson.com/todos/add', body);
+  }
+
+  removeTodo(id: any) {
+    return this.httpClient.delete(`https://dummyjson.com/todos/${id}`);
+  }
 }

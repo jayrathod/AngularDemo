@@ -1,10 +1,23 @@
-<h1>ToDo's</h1>
-<h3>{{apiStatus$ | async}}</h3>
-<ul>
+<div class="container">
+    <h1>ToDo's</h1>
+    <h3>API Status: {{apiStatus$ | async}}</h3>
+
+    <input [(ngModel)]="todoDescriptionText" [ngModelOptions]="{updateOn: 'blur'}" placeholder="Todo Description" />
+    <button (click)="addTodo()">Add Todo</button>
     <img *ngIf="loading$ | async" src="favicon.ico" />
+
     @if((apiStatus$ | async) == "success") {
+        <mat-grid-list cols="1" rowHeight="40px">
         @for(todo of allTodos$ | async; track $index) {
-            <li>{{todo.todo}}</li>
+            <mat-grid-tile>
+                {{todo.todo}}
+                <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="removeTodo(todo.id)"
+                        fontIcon="delete">
+                </mat-icon>
+            </mat-grid-tile>
         }
-    }
-</ul>
+        </mat-grid-list>
+    } 
+    
+    <h3 *ngIf="!(loading$ | async) && (apiStatus$ | async) == 'error'">{{errorMsg$ | async}}</h3>
+</div>

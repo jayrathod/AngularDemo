@@ -1,0 +1,7 @@
+.container {
+    margin: 16px;
+}
+
+::ng-deep .mat-grid-tile-content {
+    justify-content: space-between !important;
+}

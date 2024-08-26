@@ -6,7 +6,7 @@ export interface Todo {
 }
 
 export interface Todos {
-    todos: Todo[];
+    todos: Array<Todo>;
     total: number;
     skip: number;
     limit: number;
@@ -15,7 +15,7 @@ export type TodoStatus = "pending" | "loading" | "success" | "error";
 
 export interface TodoState {
     success: Todos;
-    error: null;
+    error: string | null;
     status: TodoStatus;
     loading: boolean;
 }
